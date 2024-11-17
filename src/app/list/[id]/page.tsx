@@ -22,11 +22,11 @@ async function getListDetails(name: string): Promise<ListDetailsDto> {
 }
 
 interface ListDetailProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export default async function ListDetails({ params }: ListDetailProps) {
-  const { id } = params;
+  const { id } = await params;
   const {
     results: { books, display_name },
   } = await getListDetails(id);
